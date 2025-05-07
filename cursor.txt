@@ -1,0 +1,28 @@
+DELIMITER //
+
+CREATE PROCEDURE proc_copy()
+BEGIN
+    DECLARE vfinished INT DEFAULT 0;
+    DECLARE r INT;
+    DECLARE n VARCHAR(20);
+    DECLARE c VARCHAR(10);
+
+    DECLARE stud_cursor CURSOR FOR SELECT * FROM student1;
+    DECLARE CONTINUE HANDLER FOR NOT FOUND SET vfinished = 1;
+
+    OPEN stud_cursor;
+
+    getdata: LOOP
+        FETCH stud_cursor INTO r, n, c;
+        IF vfinished = 1 THEN
+            LEAVE getdata;
+        END IF;
+
+        INSERT INTO student2 VALUES (r, n, c);
+    END LOOP getdata;
+
+    CLOSE stud_cursor;
+END //
+
+DELIMITER ;
+

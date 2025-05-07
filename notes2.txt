@@ -1,0 +1,9 @@
+inheritance and array , poly morphism
+
+inheritance: property of one class acquired by the object of another class 
+-> single : one base and one derived class
+
+for inheritance we will be using the 'extends' keyword
+step 1)create a base class
+step 2)extend derived class from base class
+step 3)create main class and object of derived class

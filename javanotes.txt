@@ -1,0 +1,5 @@
+stringname.CharAt(position);				//return character at that postion
+stringname.length();
+stringname.toLowerCase();        same for upper
+
+

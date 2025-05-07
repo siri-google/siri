@@ -1,0 +1,8 @@
+package : collection of similar datatype such as classes , interface and subclasses which perform specific task  
+types : built in and user define
+1) built in : import java.util.packagename; : applet , math , etc
+2) user define : programmer can itself create his/her own package
+how to import 
+import java.util.packagename;
+
+

@@ -1,0 +1,53 @@
+assignment 1 : write a program to implement basic concept of java programming
+
+Assignment 2: 
+create table emp(
+eno int primary key,                     (underlined = primary key)
+ename
+bdata,
+title,
+salary,
+dno
+);
+
+create table proj(
+pno,
+pname,
+budget,
+dno
+);
+
+create table workson(
+eno, pno,
+resp,
+hours
+);
+
+there are tow wildcard symbol - % and _
+% use for 0 or more character
+_ used for single character 
+
+display names of employee whose name start with 'a'
+'A%"
+select eno,name,salary from emp where ename like 'A%';
+
+select eno,name,salary from emp where ename like '%A';           //if we want A at last
+
+for list of values we use the 'IN' operator : IN [10,20,30]
+
+to limit : 'civ__' :- it will only allow only two character in front of that (n underscore = n character)
+
+select the string in which department name should be exactly of 8 character
+select * from dept where dname like '________';
+
+> how to use the both symbol
+	->display all records of employee where whose salary starts with 8 in the first position and has any two character and has 3 in the 3rd position
+	select * from emp where salary like '8__3%';
+
+last five question query's for wildcard character
+write an sql qery that returns employee number name title and salary of those employee whose name start with letter 'A'
+------------------------------------------------------------------------------------------------ end with letter 'A'
+display all records of department where department name begins with 'civ' followed by 2 character
+display all records of department where department name should contain 8 character only 
+display all the records of employee's whose salary starts with 8 in the first position has any two character in 2nd and 3rd position and then has 3 in the 4mrth position
+

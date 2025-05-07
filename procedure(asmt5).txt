@@ -1,0 +1,33 @@
+DELIMITER //
+CREATE PROCEDURE calfine(rno INT, nbook VARCHAR(10))
+BEGIN
+    DECLARE no_ofdays INT;
+    DECLARE fineamount INT; -- Added missing semicolon
+    DECLARE date1 DATE;
+
+    SELECT dateofissue INTO date1 
+    FROM Library 
+    WHERE rollno = rno AND nameofbook = nbook;
+
+    SET no_ofdays = DATEDIFF(CURDATE(), date1);
+
+    IF no_ofdays > 15 AND no_ofdays <= 30 THEN
+        SET fineamount = (no_ofdays - 15) * 5;
+    ELSEIF no_ofdays > 30 THEN
+        SET fineamount = (15 * 5) + ((no_ofdays - 30) * 50);
+    END IF;
+
+    SELECT CONCAT('Fine is ', fineamount);
+
+    IF fineamount > 0 THEN
+        INSERT INTO Fine (rollno, finedate, fineamount) 
+        VALUES (rno, CURDATE(), fineamount);
+
+        UPDATE Library 
+        SET status = 'R' 
+        WHERE rollno = rno;
+    END IF;
+END;
+//
+DELIMITER ;
+
