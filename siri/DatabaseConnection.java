@@ -8,7 +8,7 @@ public class DatabaseConnection {
         // MySQL Database Credentials
         String url = "jdbc:mysql://localhost:3306/testdb";
         String user = "root";  // Change if your MySQL username is different
-        String password = "password"; // Change this to your actual password
+        String password = "bugsploit"; // Change this to your actual password
 
         try {
             // Step 1: Establish Connection
