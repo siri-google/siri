@@ -1,0 +1,99 @@
+
+## **Step 1: Prerequisites**
+Before starting, ensure you have:
+✔ **Java Development Kit (JDK) installed**  
+✔ **MySQL installed and running**  
+✔ **MySQL JDBC Driver (`mysql-connector-java.jar`) downloaded**  
+✔ **MySQL database created**  
+
+---
+
+## **Step 2: Setting Up MySQL Database**
+1. **Open MySQL Command Line or MySQL Workbench**  
+2. **Create a new database** using:
+   ```sql
+   CREATE DATABASE testdb;
+   ```
+3. **Use the newly created database**:
+   ```sql
+   USE testdb;
+   ```
+4. **Create a table**:
+   ```sql
+   CREATE TABLE students (
+       id INT PRIMARY KEY,
+       name VARCHAR(50)
+   );
+   ```
+5. **Insert sample data**:
+   ```sql
+   INSERT INTO students (id, name) VALUES (1, 'Suraj');
+   ```
+
+---
+
+## **Step 3: Download and Add MySQL JDBC Driver**
+✔ **Download** the MySQL JDBC Driver (`mysql-connector-java.jar`) from [MySQL Official Website](https://dev.mysql.com/downloads/connector/j/).  
+✔ **Add the JAR file to your project** in your IDE (Eclipse, IntelliJ, NetBeans).  
+✔ If using CLI, place the `.jar` file in the same folder as your `.java` file.  
+
+---
+
+## **Step 4: Write Java Code to Connect to MySQL**
+Here’s a simple **Java program** that connects to **MySQL and executes a query**:
+
+```java
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
+
+public class DatabaseConnection {
+    public static void main(String[] args) {
+        // MySQL Database Credentials
+        String url = "jdbc:mysql://localhost:3306/testdb";
+        String user = "root";  // Change if your MySQL username is different
+        String password = "password"; // Change this to your actual password
+
+        try {
+            // Step 1: Establish Connection
+            Connection conn = DriverManager.getConnection(url, user, password);
+            System.out.println("Connected to MySQL successfully!");
+
+            // Step 2: Create Statement Object
+            Statement stmt = conn.createStatement();
+
+            // Step 3: Execute Query
+            String sql = "SELECT * FROM students";
+            ResultSet rs = stmt.executeQuery(sql);
+
+            // Step 4: Display Query Results
+            while (rs.next()) {
+                System.out.println("ID: " + rs.getInt("id") + ", Name: " + rs.getString("name"));
+            }
+
+            // Step 5: Close Connection
+            conn.close();
+            System.out.println("Connection closed.");
+
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+    }
+}
+```
+
+---
+
+## **Step 5: Compiling & Running the Java Program**
+1. **Open terminal/command prompt**  
+2. **Navigate to the folder containing the `.java` file**  
+3. **Compile the Java program**:
+   ```
+   javac -cp .;mysql-connector-java.jar DatabaseConnection.java
+   ```
+4. **Run the program**:
+   ```
+   java -cp .;mysql-connector-java.jar DatabaseConnection
+   ```
+
